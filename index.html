@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pengumuman Hasil Nilai ASTS Ganjil</title>
+    <title>Pengumuman Nilai ASTS Ganjil</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +13,7 @@
         }
 
         html, body {
-            height: 100%;
+            min-height: 100vh;
             width: 100%;
             overflow-x: hidden;
         }
@@ -23,34 +23,48 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 12px;
+            padding: 16px 12px;
         }
 
         .card {
             background: #ffffff;
-            padding: 24px 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 36px 24px;
+            border-radius: 24px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
             width: 100%;
             max-width: 480px;
+            min-height: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             transition: max-width 0.3s ease;
         }
 
         .card.admin-mode {
             max-width: 900px;
+            min-height: auto;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 28px;
         }
 
         .header h2 {
             color: #1e293b;
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.25;
+            letter-spacing: 0.5px;
+        }
+
+        .header .sub-header {
+            color: #2563eb;
             font-size: 18px;
             font-weight: 800;
             text-transform: uppercase;
-            line-height: 1.3;
+            margin-top: 4px;
             letter-spacing: 0.5px;
         }
 
@@ -58,8 +72,8 @@
             color: #64748b;
             font-size: 14px;
             font-weight: 600;
-            margin-top: 4px;
-            margin-bottom: 12px;
+            margin-top: 6px;
+            margin-bottom: 16px;
         }
 
         .header .mapel {
@@ -68,19 +82,26 @@
             color: #2563eb;
             font-size: 15px;
             font-weight: 700;
-            padding: 6px 18px;
+            padding: 8px 20px;
             border-radius: 20px;
             border: 1px solid #bfdbfe;
             letter-spacing: 0.5px;
         }
 
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 700;
             color: #334155;
             font-size: 15px;
@@ -89,7 +110,7 @@
         .direct-guide {
             font-size: 13px;
             color: #64748b;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             line-height: 1.4;
         }
 
@@ -99,9 +120,9 @@
 
         input[type="text"] {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             border: 2px solid #cbd5e1;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 16px;
             text-align: center;
             letter-spacing: 1px;
@@ -113,16 +134,16 @@
         input[type="text"]:focus {
             border-color: #2563eb;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
         }
 
         button {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             background-color: #2563eb;
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
@@ -136,7 +157,7 @@
 
         .btn-secondary {
             background-color: #64748b;
-            margin-top: 12px;
+            margin-top: 14px;
         }
 
         .btn-secondary:hover {
@@ -146,8 +167,8 @@
         .error-msg {
             color: #dc2626;
             text-align: center;
-            margin-top: 12px;
-            font-size: 13px;
+            margin-top: 14px;
+            font-size: 14px;
             display: none;
             font-weight: 600;
         }
@@ -159,16 +180,16 @@
         .student-profile {
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 14px 16px;
-            border-radius: 12px;
-            margin-bottom: 14px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            margin-bottom: 16px;
         }
 
         .info-row {
             display: grid;
-            grid-template-columns: 85px 12px 1fr;
+            grid-template-columns: 90px 12px 1fr;
             align-items: center;
-            margin: 6px 0;
+            margin: 8px 0;
             font-size: 14px;
             color: #334155;
         }
@@ -193,10 +214,10 @@
         .rank-box {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 10px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 14px;
             text-align: center;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         .rank-box .rank-title {
@@ -208,7 +229,7 @@
         }
 
         .rank-box .rank-value {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
             color: #334155;
         }
@@ -216,15 +237,15 @@
         .score-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 12px;
             text-align: center;
         }
 
         .score-box {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 12px 8px;
-            border-radius: 12px;
+            padding: 16px 10px;
+            border-radius: 14px;
         }
 
         .score-box.total-jadi {
@@ -238,26 +259,26 @@
             color: #64748b;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .score-box .val {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             color: #1e293b;
         }
 
         .score-box.total-jadi .val {
             color: #2563eb;
-            font-size: 30px;
+            font-size: 32px;
         }
 
         .table-container {
             overflow-x: auto;
-            max-height: 50vh;
+            max-height: 55vh;
             margin-top: 14px;
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
+            border-radius: 14px;
         }
 
         table {
@@ -268,7 +289,7 @@
         }
 
         th, td {
-            padding: 10px 12px;
+            padding: 12px;
             border-bottom: 1px solid #e2e8f0;
         }
 
@@ -284,101 +305,96 @@
         tr:hover {
             background-color: #f8fafc;
         }
-
-        @media (max-height: 650px) {
-            .header { margin-bottom: 12px; }
-            .header h2 { font-size: 16px; }
-            .header .sub-title { margin-bottom: 8px; font-size: 12px; }
-            .card { padding: 18px 16px; }
-            .form-group { margin-bottom: 12px; }
-        }
     </style>
 </head>
 <body>
 
 <div class="card" id="mainCard">
     <div class="header">
-        <h2>PENGUMUMAN HASIL NILAI ASTS GANJIL</h2>
+        <h2>PENGUMUMAN NILAI</h2>
+        <div class="sub-header">ASTS GANJIL</div>
         <div class="sub-title">TAHUN AJARAN 2026/2027</div>
         <div class="mapel">PENDIDIKAN PANCASILA</div>
     </div>
 
-    <!-- Input Ujian -->
-    <div id="searchSection">
-        <div class="form-group">
-            <label for="inputKode">Kode Ujian ASTS Ganjil:</label>
-            <div class="direct-guide">Masukkan Kode Ujian (Contoh: <strong>2026-09-VII-01</strong>)</div>
-            <input type="text" id="inputKode" placeholder="2026-09-VII-01" autocomplete="off">
-        </div>
-        <button onclick="prosesCekNilai()">Lihat Nilai Saya</button>
-        <p id="errorMsg" class="error-msg">Kode Ujian tidak ditemukan. Periksa kembali Kode Ujian Anda.</p>
-    </div>
-
-    <!-- Hasil Nilai Siswa -->
-    <div id="resultSection" class="result-card">
-        <div class="student-profile">
-            <div class="info-row">
-                <span class="info-label">Nama</span>
-                <span class="info-colon">:</span>
-                <span class="info-value" id="resNama">-</span>
+    <div class="content-area">
+        <!-- Input Ujian -->
+        <div id="searchSection">
+            <div class="form-group">
+                <label for="inputKode">Kode Ujian ASTS Ganjil:</label>
+                <div class="direct-guide">Masukkan Kode Ujian (Contoh: <strong>2026-09-VII-01</strong>)</div>
+                <input type="text" id="inputKode" placeholder="2026-09-VII-01" autocomplete="off">
             </div>
-            <div class="info-row">
-                <span class="info-label">Kode Ujian</span>
-                <span class="info-colon">:</span>
-                <span class="info-value" id="resKode">-</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Kelas</span>
-                <span class="info-colon">:</span>
-                <span class="info-value" id="resKelas">-</span>
-            </div>
+            <button onclick="prosesCekNilai()">Lihat Nilai Saya</button>
+            <p id="errorMsg" class="error-msg">Kode Ujian tidak ditemukan. Periksa kembali Kode Ujian Anda.</p>
         </div>
 
-        <div class="rank-box">
-            <div class="rank-title">Peringkat Kelas</div>
-            <div class="rank-value" id="resPeringkat">-</div>
+        <!-- Hasil Nilai Siswa -->
+        <div id="resultSection" class="result-card">
+            <div class="student-profile">
+                <div class="info-row">
+                    <span class="info-label">Nama</span>
+                    <span class="info-colon">:</span>
+                    <span class="info-value" id="resNama">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Kode Ujian</span>
+                    <span class="info-colon">:</span>
+                    <span class="info-value" id="resKode">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Kelas</span>
+                    <span class="info-colon">:</span>
+                    <span class="info-value" id="resKelas">-</span>
+                </div>
+            </div>
+
+            <div class="rank-box">
+                <div class="rank-title">Peringkat Kelas</div>
+                <div class="rank-value" id="resPeringkat">-</div>
+            </div>
+
+            <div class="score-grid">
+                <div class="score-box">
+                    <div class="label">Nilai PG</div>
+                    <div class="val" id="resPG">0/75</div>
+                </div>
+                <div class="score-box">
+                    <div class="label">Nilai Essai</div>
+                    <div class="val" id="resEssai">0/25</div>
+                </div>
+                <div class="score-box total-jadi">
+                    <div class="label">Total Nilai</div>
+                    <div class="val" id="resTotal">0</div>
+                </div>
+            </div>
         </div>
 
-        <div class="score-grid">
-            <div class="score-box">
-                <div class="label">Nilai PG</div>
-                <div class="val" id="resPG">0/75</div>
+        <!-- Dashboard Rekap Admin -->
+        <div id="adminDashboardSection" class="admin-card">
+            <h3 style="font-size: 16px; color: #1e293b; margin-bottom: 12px; text-align: center;">REKAP DATA NILAI SISWA</h3>
+            <div class="form-group">
+                <input type="text" id="cariAdmin" placeholder="Cari Nama / Kode..." onkeyup="filterTabelAdmin()" style="text-align: left; font-size: 14px; padding: 12px;">
             </div>
-            <div class="score-box">
-                <div class="label">Nilai Essai</div>
-                <div class="val" id="resEssai">0/25</div>
+            <div class="table-container">
+                <table id="tabelNilaiAdmin">
+                    <thead>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Nama Siswa</th>
+                            <th>Kelas</th>
+                            <th>Rank</th>
+                            <th>PG</th>
+                            <th>Essai</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyAdmin">
+                    </tbody>
+                </table>
             </div>
-            <div class="score-box total-jadi">
-                <div class="label">Total Nilai</div>
-                <div class="val" id="resTotal">0</div>
-            </div>
+            <button onclick="kembaliKeInput()" class="btn-secondary">Keluar</button>
         </div>
-    </div>
-
-    <!-- Dashboard Rekap Admin -->
-    <div id="adminDashboardSection" class="admin-card">
-        <h3 style="font-size: 16px; color: #1e293b; margin-bottom: 10px; text-align: center;">REKAP DATA NILAI SISWA</h3>
-        <div class="form-group">
-            <input type="text" id="cariAdmin" placeholder="Cari Nama / Kode..." onkeyup="filterTabelAdmin()" style="text-align: left; font-size: 14px; padding: 10px;">
-        </div>
-        <div class="table-container">
-            <table id="tabelNilaiAdmin">
-                <thead>
-                    <tr>
-                        <th>Kode</th>
-                        <th>Nama Siswa</th>
-                        <th>Kelas</th>
-                        <th>Rank</th>
-                        <th>PG</th>
-                        <th>Essai</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody id="tbodyAdmin">
-                </tbody>
-            </table>
-        </div>
-        <button onclick="kembaliKeInput()" class="btn-secondary">Keluar</button>
     </div>
 </div>
 
