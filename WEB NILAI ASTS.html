@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Hasil Nilai ASTS Ganjil</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 28px 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 440px;
+            transition: max-width 0.3s ease;
+        }
+
+        .card.admin-mode {
+            max-width: 800px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h2 {
+            color: #1e293b;
+            font-size: 17px;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .header .sub-title {
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 2px;
+            margin-bottom: 12px;
+        }
+
+        .header .mapel {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid #bfdbfe;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .direct-guide {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .direct-guide strong {
+            color: #2563eb;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 15px;
+            text-align: center;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: #0f172a;
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background-color: #64748b;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+
+        .error-msg {
+            color: #dc2626;
+            text-align: center;
+            margin-top: 12px;
+            font-size: 13px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .result-card, .admin-card {
+            display: none;
+        }
+
+        .student-profile {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 80px 12px 1fr;
+            align-items: center;
+            margin: 6px 0;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .info-colon {
+            text-align: center;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .info-value {
+            color: #1e293b;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        /* Box Peringkat Netral & Lebih Kecil */
+        .rank-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .rank-box .rank-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .rank-box .rank-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            text-align: center;
+        }
+
+        .score-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px 8px;
+            border-radius: 10px;
+        }
+
+        .score-box.total-jadi {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            grid-column: span 2;
+        }
+
+        .score-box .label {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .score-box .val {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .score-box.total-jadi .val {
+            color: #2563eb;
+            font-size: 28px;
+        }
+
+        /* CSS Tabel Rekap Admin */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 700;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card" id="mainCard">
+    <div class="header">
+        <h2>PENGUMUMAN HASIL NILAI ASTS GANJIL</h2>
+        <div class="sub-title">TAHUN AJARAN 2026/2027</div>
+        <div class="mapel">PENDIDIKAN PANCASILA</div>
+    </div>
+
+    <!-- Input Tunggal (Siswa & Admin) -->
+    <div id="searchSection">
+        <div class="form-group">
+            <label for="inputKode">Kode Ujian ASTS Ganjil:</label>
+            <div class="direct-guide">Masukkan Kode Ujian (Contoh: <strong>2026-09-VII-01</strong>)</div>
+            <input type="text" id="inputKode" placeholder="2026-09-VII-01" autocomplete="off">
+        </div>
+        <button onclick="prosesCekNilai()">Lihat Nilai Saya</button>
+        <p id="errorMsg" class="error-msg">Kode Ujian tidak ditemukan. Periksa kembali Kode Ujian Anda.</p>
+    </div>
+
+    <!-- Tampilan Hasil Nilai Siswa -->
+    <div id="resultSection" class="result-card">
+        <div class="student-profile">
+            <div class="info-row">
+                <span class="info-label">Nama</span>
+                <span class="info-colon">:</span>
+                <span class="info-value" id="resNama">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Kode Ujian</span>
+                <span class="info-colon">:</span>
+                <span class="info-value" id="resKode">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Kelas</span>
+                <span class="info-colon">:</span>
+                <span class="info-value" id="resKelas">-</span>
+            </div>
+        </div>
+
+        <div class="rank-box">
+            <div class="rank-title">Peringkat Kelas</div>
+            <div class="rank-value" id="resPeringkat">-</div>
+        </div>
+
+        <div class="score-grid">
+            <div class="score-box">
+                <div class="label">Nilai PG</div>
+                <div class="val" id="resPG">0</div>
+            </div>
+            <div class="score-box">
+                <div class="label">Nilai Essai</div>
+                <div class="val" id="resEssai">0</div>
+            </div>
+            <div class="score-box total-jadi">
+                <div class="label">Total Nilai</div>
+                <div class="val" id="resTotal">0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Rekap Admin -->
+    <div id="adminDashboardSection" class="admin-card">
+        <h3 style="font-size: 16px; color: #1e293b; margin-bottom: 12px; text-align: center;">REKAP DATA NILAI SISWA</h3>
+        <div class="form-group">
+            <input type="text" id="cariAdmin" placeholder="Cari Nama / Kode..." onkeyup="filterTabelAdmin()" style="text-align: left; font-size: 13px; padding: 8px 12px;">
+        </div>
+        <div class="table-container">
+            <table id="tabelNilaiAdmin">
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Nama Siswa</th>
+                        <th>Rank</th>
+                        <th>PG</th>
+                        <th>Essai</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyAdmin">
+                </tbody>
+            </table>
+        </div>
+        <button onclick="kembaliKeInput()" class="btn-secondary" style="margin-top: 16px;">Keluar</button>
+    </div>
+</div>
+
+<script>
+    // KATA SANDI ADMIN
+    const PASS_ADMIN = "admin123";
+
+    // DATABASE SISWA
+    const dbSiswa = {
+        "2026-09-VII-01": { nama: "ABDULLOH AZMI MUBAROK", kelas: "VII", peringkat: "8/33", pg: 42, essai: 20, total: 62 },
+        "2026-09-VII-02": { nama: "AHMAD AZIZUL RASYAD", kelas: "VII", peringkat: "22/33", pg: 30, essai: 0, total: 30 },
+        "2026-09-VII-03": { nama: "AHMAD ROFIQI ABDILLAH", kelas: "VII", peringkat: "5/33", pg: 57, essai: 10, total: 67 },
+        "2026-09-VII-04": { nama: "AHMAD ZHAFRAN CHELLO ALVARO", kelas: "VII", peringkat: "30/33", pg: 15, essai: 0, total: 15 },
+        "2026-09-VII-05": { nama: "AHMAD ZIDNI KHALWA", kelas: "VII", peringkat: "16/33", pg: 33, essai: 5, total: 38 },
+        "2026-09-VII-06": { nama: "AHYA ZUNAIROTUL KARIMA", kelas: "VII", peringkat: "4/33", pg: 48, essai: 20, total: 68 },
+        "2026-09-VII-07": { nama: "ANISA SEPTIANA AZZAHRA", kelas: "VII", peringkat: "19/33", pg: 24, essai: 10, total: 34 },
+        "2026-09-VII-08": { nama: "AZKA ALDRICK ALVARO", kelas: "VII", peringkat: "18/33", pg: 30, essai: 5, total: 35 },
+        "2026-09-VII-09": { nama: "DHIA UMI FAZILA", kelas: "VII", peringkat: "1/33", pg: 63, essai: 25, total: 88 },
+        "2026-09-VII-10": { nama: "DINA TANIA MAULIDA", kelas: "VII", peringkat: "17/33", pg: 21, essai: 15, total: 36 },
+        "2026-09-VII-11": { nama: "KANZA SAFIYA NADA", kelas: "VII", peringkat: "14/33", pg: 27, essai: 15, total: 42 },
+        "2026-09-VII-12": { nama: "M. NAZRIL AZZAM", kelas: "VII", peringkat: "12/33", pg: 36, essai: 10, total: 46 },
+        "2026-09-VII-13": { nama: "MAYA DWI ASTUTIK", kelas: "VII", peringkat: "28/33", pg: 18, essai: 5, total: 23 },
+        "2026-09-VII-14": { nama: "MOHAMMAD IQBAL SAPUTRA", kelas: "VII", peringkat: "23/33", pg: 24, essai: 5, total: 29 },
+        "2026-09-VII-15": { nama: "MUHAMMAD DAFFA IBNU HAFIZ", kelas: "VII", peringkat: "21/33", pg: 21, essai: 10, total: 31 },
+        "2026-09-VII-16": { nama: "MUHAMMAD KHOIRUR ROZIQIN", kelas: "VII", peringkat: "25/33", pg: 27, essai: 0, total: 27 },
+        "2026-09-VII-17": { nama: "MUHAMMAD NAILUL IZZI", kelas: "VII", peringkat: "20/33", pg: 33, essai: 0, total: 33 },
+        "2026-09-VII-18": { nama: "MUHAMMAD NIZAM ARSYIFA", kelas: "VII", peringkat: "11/33", pg: 42, essai: 5, total: 47 },
+        "2026-09-VII-19": { nama: "MUHAMMAD NURIL KHITAM", kelas: "VII", peringkat: "24/33", pg: 24, essai: 5, total: 29 },
+        "2026-09-VII-20": { nama: "MUHAMMAD NURUN MUJTABA", kelas: "VII", peringkat: "27/33", pg: 24, essai: 0, total: 24 },
+        "2026-09-VII-21": { nama: "MUHAMMAD RIF'AN ARIF", kelas: "VII", peringkat: "3/33", pg: 54, essai: 20, total: 74 },
+        "2026-09-VII-22": { nama: "MUHAMMAD SALMAN FAIDLURROHMAN", kelas: "VII", peringkat: "13/33", pg: 30, essai: 15, total: 45 },
+        "2026-09-VII-23": { nama: "MUHAMMAD SOBIBUR ROHMAN", kelas: "VII", peringkat: "15/33", pg: 24, essai: 15, total: 39 },
+        "2026-09-VII-24": { nama: "MUHAMMAD ZAKI RAMADHAN", kelas: "VII", peringkat: "29/33", pg: 18, essai: 0, total: 18 },
+        "2026-09-VII-25": { nama: "NASHWA KAYLA UNAF", kelas: "VII", peringkat: "6/33", pg: 51, essai: 15, total: 66 },
+        "2026-09-VII-26": { nama: "NUR HIKMATUL KHAROMAH", kelas: "VII", peringkat: "2/33", pg: 57, essai: 20, total: 77 },
+        "2026-09-VII-27": { nama: "NUR LAILATUN NI'MAH", kelas: "VII", peringkat: "7/33", pg: 45, essai: 20, total: 65 },
+        "2026-09-VII-28": { nama: "NUR MUHAMMAD FABIANSYAH ARYANTO", kelas: "VII", peringkat: "9/33", pg: 51, essai: 10, total: 61 },
+        "2026-09-VII-29": { nama: "NURUL IZZAH ABYANUSSALWA", kelas: "VII", peringkat: "10/33", pg: 36, essai: 15, total: 51 },
+        "2026-09-VII-30": { nama: "RAMA DIAN ADITIYA", kelas: "VII", peringkat: "31/33", pg: 15, essai: 0, total: 15 },
+        "2026-09-VII-31": { nama: "ROCHIM ELVIN RAFLISYON", kelas: "VII", peringkat: "32/33", pg: 15, essai: 0, total: 15 },
+        "2026-09-VII-32": { nama: "ROCHMAN ELVAN RAFLISYON", kelas: "VII", peringkat: "33/33", pg: 12, essai: 0, total: 12 },
+        "2026-09-VII-33": { nama: "SAFIRA PUTRI RAMADHANI", kelas: "VII", peringkat: "26/33", pg: 21, essai: 5, total: 26 }
+    };
+
+    function prosesCekNilai() {
+        const inputVal = document.getElementById("inputKode").value.trim();
+        const inputUpper = inputVal.toUpperCase();
+        const errorMsg = document.getElementById("errorMsg");
+
+        // Deteksi jika input adalah Password Admin
+        if (inputVal === PASS_ADMIN) {
+            errorMsg.style.display = "none";
+            document.getElementById("searchSection").style.display = "none";
+            document.getElementById("mainCard").classList.add("admin-mode");
+            
+            muatTabelAdmin();
+            document.getElementById("adminDashboardSection").style.display = "block";
+            return;
+        }
+
+        // Jika bukan password admin, proses sebagai Kode Ujian Siswa
+        const siswa = dbSiswa[inputUpper];
+
+        if (siswa) {
+            errorMsg.style.display = "none";
+            document.getElementById("searchSection").style.display = "none";
+
+            document.getElementById("resNama").textContent = siswa.nama;
+            document.getElementById("resKode").textContent = inputUpper;
+            document.getElementById("resKelas").textContent = siswa.kelas;
+            document.getElementById("resPeringkat").textContent = siswa.peringkat;
+            document.getElementById("resPG").textContent = siswa.pg;
+            document.getElementById("resEssai").textContent = siswa.essai;
+            document.getElementById("resTotal").textContent = siswa.total;
+
+            document.getElementById("resultSection").style.display = "block";
+        } else {
+            errorMsg.style.display = "block";
+        }
+    }
+
+    function muatTabelAdmin() {
+        const tbody = document.getElementById("tbodyAdmin");
+        tbody.innerHTML = "";
+
+        for (const [kode, data] of Object.entries(dbSiswa)) {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td><strong>${kode}</strong></td>
+                <td>${data.nama}</td>
+                <td>${data.peringkat}</td>
+                <td>${data.pg}</td>
+                <td>${data.essai}</td>
+                <td><strong>${data.total}</strong></td>
+            `;
+            tbody.appendChild(tr);
+        }
+    }
+
+    function filterTabelAdmin() {
+        const input = document.getElementById("cariAdmin").value.toUpperCase();
+        const trs = document.getElementById("tbodyAdmin").getElementsByTagName("tr");
+
+        for (let i = 0; i < trs.length; i++) {
+            const tdKode = trs[i].getElementsByTagName("td")[0];
+            const tdNama = trs[i].getElementsByTagName("td")[1];
+            if (tdKode || tdNama) {
+                const txtKode = tdKode.textContent || tdKode.innerText;
+                const txtNama = tdNama.textContent || tdNama.innerText;
+                if (txtKode.toUpperCase().indexOf(input) > -1 || txtNama.toUpperCase().indexOf(input) > -1) {
+                    trs[i].style.display = "";
+                } else {
+                    trs[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function kembaliKeInput() {
+        document.getElementById("mainCard").classList.remove("admin-mode");
+        document.getElementById("resultSection").style.display = "none";
+        document.getElementById("adminDashboardSection").style.display = "none";
+        document.getElementById("searchSection").style.display = "block";
+        document.getElementById("inputKode").value = "";
+        document.getElementById("errorMsg").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
