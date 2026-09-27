@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pengumuman Hasil Nilai ASTS Ganjil</title>
     <style>
         * {
@@ -12,47 +12,53 @@
             padding: 0;
         }
 
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             background-color: #f0f4f8;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 16px;
+            padding: 12px;
         }
 
         .card {
             background: #ffffff;
-            padding: 28px 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 24px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             width: 100%;
-            max-width: 440px;
+            max-width: 480px;
             transition: max-width 0.3s ease;
         }
 
         .card.admin-mode {
-            max-width: 850px;
+            max-width: 900px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .header h2 {
             color: #1e293b;
-            font-size: 17px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: 800;
             text-transform: uppercase;
             line-height: 1.3;
+            letter-spacing: 0.5px;
         }
 
         .header .sub-title {
             color: #64748b;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
-            margin-top: 2px;
+            margin-top: 4px;
             margin-bottom: 12px;
         }
 
@@ -60,30 +66,31 @@
             display: inline-block;
             background-color: #eff6ff;
             color: #2563eb;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 700;
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 20px;
             border: 1px solid #bfdbfe;
             letter-spacing: 0.5px;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         label {
             display: block;
             margin-bottom: 6px;
-            font-weight: 600;
+            font-weight: 700;
             color: #334155;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .direct-guide {
-            font-size: 12px;
+            font-size: 13px;
             color: #64748b;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
         .direct-guide strong {
@@ -92,13 +99,13 @@
 
         input[type="text"] {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border: 2px solid #cbd5e1;
-            border-radius: 10px;
-            font-size: 15px;
+            border-radius: 12px;
+            font-size: 16px;
             text-align: center;
             letter-spacing: 1px;
-            font-weight: 600;
+            font-weight: 700;
             color: #0f172a;
             transition: all 0.2s;
         }
@@ -111,15 +118,16 @@
 
         button {
             width: 100%;
-            padding: 13px;
+            padding: 15px;
             background-color: #2563eb;
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 600;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
             cursor: pointer;
             transition: background 0.2s;
+            touch-action: manipulation;
         }
 
         button:hover {
@@ -128,7 +136,7 @@
 
         .btn-secondary {
             background-color: #64748b;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .btn-secondary:hover {
@@ -141,7 +149,7 @@
             margin-top: 12px;
             font-size: 13px;
             display: none;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .result-card, .admin-card {
@@ -152,13 +160,13 @@
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
             padding: 14px 16px;
-            border-radius: 10px;
-            margin-bottom: 16px;
+            border-radius: 12px;
+            margin-bottom: 14px;
         }
 
         .info-row {
             display: grid;
-            grid-template-columns: 80px 12px 1fr;
+            grid-template-columns: 85px 12px 1fr;
             align-items: center;
             margin: 6px 0;
             font-size: 14px;
@@ -166,49 +174,49 @@
         }
 
         .info-label {
-            font-weight: 600;
+            font-weight: 700;
             color: #0f172a;
         }
 
         .info-colon {
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
             color: #0f172a;
         }
 
         .info-value {
             color: #1e293b;
-            font-weight: 600;
+            font-weight: 700;
             word-break: break-all;
         }
 
         .rank-box {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 8px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 12px;
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .rank-box .rank-title {
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             color: #64748b;
             text-transform: uppercase;
             margin-bottom: 2px;
         }
 
         .rank-box .rank-value {
-            font-size: 16px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: 800;
             color: #334155;
         }
 
         .score-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 10px;
             text-align: center;
         }
 
@@ -216,7 +224,7 @@
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             padding: 12px 8px;
-            border-radius: 10px;
+            border-radius: 12px;
         }
 
         .score-box.total-jadi {
@@ -226,29 +234,30 @@
         }
 
         .score-box .label {
-            font-size: 11px;
+            font-size: 12px;
             color: #64748b;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             margin-bottom: 4px;
         }
 
         .score-box .val {
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
             color: #1e293b;
         }
 
         .score-box.total-jadi .val {
             color: #2563eb;
-            font-size: 28px;
+            font-size: 30px;
         }
 
         .table-container {
             overflow-x: auto;
-            margin-top: 16px;
+            max-height: 50vh;
+            margin-top: 14px;
             border: 1px solid #e2e8f0;
-            border-radius: 10px;
+            border-radius: 12px;
         }
 
         table {
@@ -267,10 +276,21 @@
             background-color: #f1f5f9;
             color: #334155;
             font-weight: 700;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         tr:hover {
             background-color: #f8fafc;
+        }
+
+        @media (max-height: 650px) {
+            .header { margin-bottom: 12px; }
+            .header h2 { font-size: 16px; }
+            .header .sub-title { margin-bottom: 8px; font-size: 12px; }
+            .card { padding: 18px 16px; }
+            .form-group { margin-bottom: 12px; }
         }
     </style>
 </head>
@@ -283,7 +303,7 @@
         <div class="mapel">PENDIDIKAN PANCASILA</div>
     </div>
 
-    <!-- Input Tunggal -->
+    <!-- Input Ujian -->
     <div id="searchSection">
         <div class="form-group">
             <label for="inputKode">Kode Ujian ASTS Ganjil:</label>
@@ -337,9 +357,9 @@
 
     <!-- Dashboard Rekap Admin -->
     <div id="adminDashboardSection" class="admin-card">
-        <h3 style="font-size: 16px; color: #1e293b; margin-bottom: 12px; text-align: center;">REKAP DATA NILAI SISWA</h3>
+        <h3 style="font-size: 16px; color: #1e293b; margin-bottom: 10px; text-align: center;">REKAP DATA NILAI SISWA</h3>
         <div class="form-group">
-            <input type="text" id="cariAdmin" placeholder="Cari Nama / Kode..." onkeyup="filterTabelAdmin()" style="text-align: left; font-size: 13px; padding: 8px 12px;">
+            <input type="text" id="cariAdmin" placeholder="Cari Nama / Kode..." onkeyup="filterTabelAdmin()" style="text-align: left; font-size: 14px; padding: 10px;">
         </div>
         <div class="table-container">
             <table id="tabelNilaiAdmin">
@@ -358,14 +378,13 @@
                 </tbody>
             </table>
         </div>
-        <button onclick="kembaliKeInput()" class="btn-secondary" style="margin-top: 16px;">Keluar</button>
+        <button onclick="kembaliKeInput()" class="btn-secondary">Keluar</button>
     </div>
 </div>
 
 <script>
     const PASS_ADMIN = "admin123";
 
-    // DATABASE SISWA UPDATE LENGKAP DARI DAFTAR NILAI_6.XLSX
     const dbSiswa = {
         "2026-09-VII-01": { nama: "ABDULLOH AZMI MUBAROK", kelas: "VII", peringkat: "8/33", pg: 42, essai: 20, total: 62 },
         "2026-09-VII-02": { nama: "AHMAD AZIZUL RASYAD", kelas: "VII", peringkat: "22/33", pg: 30, essai: 0, total: 30 },
@@ -450,7 +469,6 @@
         const inputUpper = inputVal.toUpperCase();
         const errorMsg = document.getElementById("errorMsg");
 
-        // Akses Admin
         if (inputVal === PASS_ADMIN) {
             errorMsg.style.display = "none";
             document.getElementById("searchSection").style.display = "none";
@@ -461,7 +479,6 @@
             return;
         }
 
-        // Akses Siswa
         const siswa = dbSiswa[inputUpper];
 
         if (siswa) {
