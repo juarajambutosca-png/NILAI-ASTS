@@ -235,7 +235,7 @@
         }
 
         .score-box .val {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             color: #1e293b;
         }
@@ -324,11 +324,11 @@
         <div class="score-grid">
             <div class="score-box">
                 <div class="label">Nilai PG</div>
-                <div class="val" id="resPG">0</div>
+                <div class="val" id="resPG">0/75</div>
             </div>
             <div class="score-box">
                 <div class="label">Nilai Essai</div>
-                <div class="val" id="resEssai">0</div>
+                <div class="val" id="resEssai">0/25</div>
             </div>
             <div class="score-box total-jadi">
                 <div class="label">Total Nilai</div>
@@ -431,8 +431,8 @@
             document.getElementById("resKode").textContent = inputUpper;
             document.getElementById("resKelas").textContent = siswa.kelas;
             document.getElementById("resPeringkat").textContent = siswa.peringkat;
-            document.getElementById("resPG").textContent = siswa.pg;
-            document.getElementById("resEssai").textContent = siswa.essai;
+            document.getElementById("resPG").textContent = siswa.pg + "/75";
+            document.getElementById("resEssai").textContent = siswa.essai + "/25";
             document.getElementById("resTotal").textContent = siswa.total;
 
             document.getElementById("resultSection").style.display = "block";
@@ -451,8 +451,8 @@
                 <td><strong>${kode}</strong></td>
                 <td>${data.nama}</td>
                 <td>${data.peringkat}</td>
-                <td>${data.pg}</td>
-                <td>${data.essai}</td>
+                <td>${data.pg}/75</td>
+                <td>${data.essai}/25</td>
                 <td><strong>${data.total}</strong></td>
             `;
             tbody.appendChild(tr);
