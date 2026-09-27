@@ -32,7 +32,7 @@
         }
 
         .card.admin-mode {
-            max-width: 800px;
+            max-width: 850px;
         }
 
         .header {
@@ -182,7 +182,6 @@
             word-break: break-all;
         }
 
-        /* Box Peringkat Netral & Lebih Kecil */
         .rank-box {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -245,7 +244,6 @@
             font-size: 28px;
         }
 
-        /* CSS Tabel Rekap Admin */
         .table-container {
             overflow-x: auto;
             margin-top: 16px;
@@ -285,7 +283,7 @@
         <div class="mapel">PENDIDIKAN PANCASILA</div>
     </div>
 
-    <!-- Input Tunggal (Siswa & Admin) -->
+    <!-- Input Tunggal -->
     <div id="searchSection">
         <div class="form-group">
             <label for="inputKode">Kode Ujian ASTS Ganjil:</label>
@@ -296,7 +294,7 @@
         <p id="errorMsg" class="error-msg">Kode Ujian tidak ditemukan. Periksa kembali Kode Ujian Anda.</p>
     </div>
 
-    <!-- Tampilan Hasil Nilai Siswa -->
+    <!-- Hasil Nilai Siswa -->
     <div id="resultSection" class="result-card">
         <div class="student-profile">
             <div class="info-row">
@@ -349,6 +347,7 @@
                     <tr>
                         <th>Kode</th>
                         <th>Nama Siswa</th>
+                        <th>Kelas</th>
                         <th>Rank</th>
                         <th>PG</th>
                         <th>Essai</th>
@@ -364,10 +363,9 @@
 </div>
 
 <script>
-    // KATA SANDI ADMIN
     const PASS_ADMIN = "admin123";
 
-    // DATABASE SISWA
+    // DATABASE SISWA UPDATE LENGKAP DARI DAFTAR NILAI_6.XLSX
     const dbSiswa = {
         "2026-09-VII-01": { nama: "ABDULLOH AZMI MUBAROK", kelas: "VII", peringkat: "8/33", pg: 42, essai: 20, total: 62 },
         "2026-09-VII-02": { nama: "AHMAD AZIZUL RASYAD", kelas: "VII", peringkat: "22/33", pg: 30, essai: 0, total: 30 },
@@ -401,7 +399,50 @@
         "2026-09-VII-30": { nama: "RAMA DIAN ADITIYA", kelas: "VII", peringkat: "31/33", pg: 15, essai: 0, total: 15 },
         "2026-09-VII-31": { nama: "ROCHIM ELVIN RAFLISYON", kelas: "VII", peringkat: "32/33", pg: 15, essai: 0, total: 15 },
         "2026-09-VII-32": { nama: "ROCHMAN ELVAN RAFLISYON", kelas: "VII", peringkat: "33/33", pg: 12, essai: 0, total: 12 },
-        "2026-09-VII-33": { nama: "SAFIRA PUTRI RAMADHANI", kelas: "VII", peringkat: "26/33", pg: 21, essai: 5, total: 26 }
+        "2026-09-VII-33": { nama: "SAFIRA PUTRI RAMADHANI", kelas: "VII", peringkat: "26/33", pg: 21, essai: 5, total: 26 },
+        "2026-09-VIII-01": { nama: "ADELIA JAZAHRA PUTRI", kelas: "VIII A", peringkat: "5/20", pg: 69, essai: 25, total: 94 },
+        "2026-09-VIII-02": { nama: "ADELIA JAZILA PUTRI", kelas: "VIII A", peringkat: "20/20", pg: 30, essai: 25, total: 55 },
+        "2026-09-VIII-03": { nama: "ADIBA NAZILATUL HUSNA", kelas: "VIII A", peringkat: "3/20", pg: 75, essai: 20, total: 95 },
+        "2026-09-VIII-04": { nama: "AILLIYIN", kelas: "VIII A", peringkat: "5/20", pg: 69, essai: 25, total: 94 },
+        "2026-09-VIII-05": { nama: "ALENA NOR FADILA", kelas: "VIII A", peringkat: "12/20", pg: 69, essai: 20, total: 89 },
+        "2026-09-VIII-06": { nama: "ANGGUN TRIHAPSARI", kelas: "VIII A", peringkat: "12/20", pg: 69, essai: 20, total: 89 },
+        "2026-09-VIII-07": { nama: "ANNISA WIDYAWATI", kelas: "VIII A", peringkat: "1/20", pg: 72, essai: 25, total: 97 },
+        "2026-09-VIII-08": { nama: "ATANA IZZU NAJAKHUNA", kelas: "VIII A", peringkat: "17/20", pg: 60, essai: 20, total: 80 },
+        "2026-09-VIII-09": { nama: "AULIYA EKA SYAFARA", kelas: "VIII A", peringkat: "11/20", pg: 66, essai: 25, total: 91 },
+        "2026-09-VIII-10": { nama: "CAHAYA NAILA FARADIS ELIZZA", kelas: "VIII A", peringkat: "1/20", pg: 72, essai: 25, total: 97 },
+        "2026-09-VIII-11": { nama: "EFA MUNISATUL ULYA", kelas: "VIII A", peringkat: "15/20", pg: 60, essai: 25, total: 85 },
+        "2026-09-VIII-12": { nama: "ELSAWATI", kelas: "VIII A", peringkat: "5/20", pg: 69, essai: 25, total: 94 },
+        "2026-09-VIII-13": { nama: "GRECCIA ZAHRA BERLENIA", kelas: "VIII A", peringkat: "5/20", pg: 69, essai: 25, total: 94 },
+        "2026-09-VIII-14": { nama: "KHOLISHOTUL KUMALA", kelas: "VIII A", peringkat: "19/20", pg: 54, essai: 25, total: 79 },
+        "2026-09-VIII-15": { nama: "LAILATUL QOMARIYYAH SILVIA", kelas: "VIII A", peringkat: "14/20", pg: 66, essai: 20, total: 86 },
+        "2026-09-VIII-16": { nama: "NAURA HASNA ANNINDA", kelas: "VIII A", peringkat: "5/20", pg: 69, essai: 25, total: 94 },
+        "2026-09-VIII-17": { nama: "SALSA SAILA DIANA", kelas: "VIII A", peringkat: "3/20", pg: 75, essai: 20, total: 95 },
+        "2026-09-VIII-18": { nama: "SRI MARIYATI", kelas: "VIII A", peringkat: "16/20", pg: 63, essai: 20, total: 83 },
+        "2026-09-VIII-19": { nama: "ZAILA ALIBFIA VEDA", kelas: "VIII A", peringkat: "17/20", pg: 60, essai: 20, total: 80 },
+        "2026-09-VIII-20": { nama: "ZAKIYYATUN NAFSIYYAH", kelas: "VIII A", peringkat: "5/20", pg: 69, essai: 25, total: 94 },
+        "2026-09-VIII-21": { nama: "AFIQ OKTAFIANTORO", kelas: "VIII B", peringkat: "22/23", pg: 33, essai: 0, total: 33 },
+        "2026-09-VIII-22": { nama: "AHMAD DAVIN ADITYA PRATAMA", kelas: "VIII B", peringkat: "18/23", pg: 51, essai: 15, total: 66 },
+        "2026-09-VIII-23": { nama: "AHMAD NADZIF IHSAN", kelas: "VIII B", peringkat: "6/23", pg: 66, essai: 25, total: 91 },
+        "2026-09-VIII-24": { nama: "AHMAD NAIZAR RIZQI ABDILLAH", kelas: "VIII B", peringkat: "8/23", pg: 69, essai: 20, total: 89 },
+        "2026-09-VIII-25": { nama: "AHMAD RAFFI ANWAR", kelas: "VIII B", peringkat: "10/23", pg: 66, essai: 20, total: 86 },
+        "2026-09-VIII-26": { nama: "AHSIN BIMAULAHUL `ALI", kelas: "VIII B", peringkat: "8/23", pg: 69, essai: 20, total: 89 },
+        "2026-09-VIII-27": { nama: "ANDIKA DWI SAPUTRA", kelas: "VIII B", peringkat: "20/23", pg: 51, essai: 0, total: 51 },
+        "2026-09-VIII-28": { nama: "BADAI BAYU WIGUNA", kelas: "VIII B", peringkat: "1/23", pg: 75, essai: 20, total: 95 },
+        "2026-09-VIII-29": { nama: "BURHAN PRATAMA AL-KHAFIDZ", kelas: "VIII B", peringkat: "3/23", pg: 72, essai: 20, total: 92 },
+        "2026-09-VIII-30": { nama: "CHELSY AHMAD CASYAVANI", kelas: "VIII B", peringkat: "13/23", pg: 54, essai: 20, total: 74 },
+        "2026-09-VIII-31": { nama: "KELVIN BAGUS PURNAMA", kelas: "VIII B", peringkat: "13/23", pg: 54, essai: 20, total: 74 },
+        "2026-09-VIII-32": { nama: "KHANVA KHASBIYA RIZQI", kelas: "VIII B", peringkat: "3/23", pg: 72, essai: 20, total: 92 },
+        "2026-09-VIII-33": { nama: "MOH JOHAN AFRIANTO", kelas: "VIII B", peringkat: "19/23", pg: 48, essai: 15, total: 63 },
+        "2026-09-VIII-34": { nama: "MOHAMMAD ILHAM KHOIRUL AMIN", kelas: "VIII B", peringkat: "17/23", pg: 42, essai: 25, total: 67 },
+        "2026-09-VIII-35": { nama: "MUH ILYAS ZAKARIA ARDIYANSAH", kelas: "VIII B", peringkat: "15/23", pg: 51, essai: 20, total: 71 },
+        "2026-09-VIII-36": { nama: "MUHAMMAD FARIH AULIA ASFA", kelas: "VIII B", peringkat: "6/23", pg: 66, essai: 25, total: 91 },
+        "2026-09-VIII-37": { nama: "MUHAMMAD HAYFA ASFA", kelas: "VIII B", peringkat: "12/23", pg: 57, essai: 20, total: 77 },
+        "2026-09-VIII-38": { nama: "MUHAMMAD HILMI ZIDNA", kelas: "VIII B", peringkat: "1/23", pg: 75, essai: 20, total: 95 },
+        "2026-09-VIII-39": { nama: "MUHAMMAD KHAIRUL IHSAN", kelas: "VIII B", peringkat: "11/23", pg: 57, essai: 25, total: 82 },
+        "2026-09-VIII-40": { nama: "MUHAMMAD NAZRIL ILHAM", kelas: "VIII B", peringkat: "15/23", pg: 51, essai: 20, total: 71 },
+        "2026-09-VIII-41": { nama: "MUHAMMAD VEBRI ZIO", kelas: "VIII B", peringkat: "21/23", pg: 15, essai: 25, total: 40 },
+        "2026-09-VIII-42": { nama: "RENDI ADITYA", kelas: "VIII B", peringkat: "23/23", pg: 21, essai: 0, total: 21 },
+        "2026-09-VIII-43": { nama: "RIKI BUDI SETYAWAN", kelas: "VIII B", peringkat: "3/23", pg: 72, essai: 20, total: 92 }
     };
 
     function prosesCekNilai() {
@@ -409,7 +450,7 @@
         const inputUpper = inputVal.toUpperCase();
         const errorMsg = document.getElementById("errorMsg");
 
-        // Deteksi jika input adalah Password Admin
+        // Akses Admin
         if (inputVal === PASS_ADMIN) {
             errorMsg.style.display = "none";
             document.getElementById("searchSection").style.display = "none";
@@ -420,7 +461,7 @@
             return;
         }
 
-        // Jika bukan password admin, proses sebagai Kode Ujian Siswa
+        // Akses Siswa
         const siswa = dbSiswa[inputUpper];
 
         if (siswa) {
@@ -450,6 +491,7 @@
             tr.innerHTML = `
                 <td><strong>${kode}</strong></td>
                 <td>${data.nama}</td>
+                <td>${data.kelas}</td>
                 <td>${data.peringkat}</td>
                 <td>${data.pg}/75</td>
                 <td>${data.essai}/25</td>
